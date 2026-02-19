@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Department - Bongaigaon University Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dept-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quick Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Course Levels */
+        .course-levels {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-levels h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .level-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .level-subjects {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .level-subjects h4 {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .subject-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .subject-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-view {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Popular Topics */
+        .popular-topics {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .popular-topics h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .topic-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .topic-item:hover {
+            transform: scale(1.05);
+        }
+
+        .topic-item h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .topic-item p {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        /* Recent Uploads */
+        .recent-uploads {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .recent-uploads h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .upload-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .upload-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .upload-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .file-icon {
+            font-size: 2em;
+            margin-right: 20px;
+        }
+
+        .upload-details {
+            flex: 1;
+        }
+
+        .upload-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .upload-meta {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .download-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Contribute Section */
+        .contribute {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .contribute h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .contribute p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .levels-grid,
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-primary {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="dept-icon">📚</div>
+            <h1>English Department</h1>
+            <p class="subtitle">Complete Notes Collection for English Literature Students</p>
+            <p class="breadcrumb">
+                <a href="/index.html">Home</a> / English
+            </p>
+        </header>
+
+        <div class="course-levels">
+            <h2>📖 Browse by Course Level</h2>
+            <div class="levels-grid">
+                <div class="level-card">
+                    <h3>🎓 H.S. Level (Higher Secondary)</h3>
+                    <p style="opacity: 0.9; margin-bottom: 10px;">Foundation courses for aspiring literature students</p>
+                    <div class="level-subjects">
+                        <h4>AVAILABLE SUBJECTS:</h4>
+                        <div class="subject-list">
+                            <span class="subject-tag">English Grammar</span>
+                            <span class="subject-tag">Composition</span>
+                            <span class="subject-tag">Literature Basics</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-view" onclick="alert('Browse H.S. Level notes')">View Notes →</a>
+                </div>
+
+                <div class="level-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h3>🎯 Bachelor's Degree (B.A. English)</h3>
+                    <p style="opacity: 0.9; margin-bottom: 10px;">Comprehensive undergraduate English literature courses</p>
+                    <div class="level-subjects">
+                        <h4>AVAILABLE SUBJECTS:</h4>
+                        <div class="subject-list">
+                            <span class="subject-tag">British Literature</span>
+                            <span class="subject-tag">American Literature</span>
+                            <span class="subject-tag">Literary Criticism</span>
+                            <span class="subject-tag">Poetry</span>
+                            <span class="subject-tag">Drama</span>
+                            <span class="subject-tag">Fiction</span>
+                            <span class="subject-tag">Linguistics</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-view" onclick="alert('Browse Bachelor level notes')">View Notes →</a>
+                </div>
+
+                <div class="level-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <h3>🏆 Master's Degree (M.A. English)</h3>
+                    <p style="opacity: 0.9; margin-bottom: 10px;">Advanced research and specialized literature topics</p>
+                    <div class="level-subjects">
+                        <h4>AVAILABLE SUBJECTS:</h4>
+                        <div class="subject-list">
+                            <span class="subject-tag">Poetry II</span>
+                            <span class="subject-tag">Fiction II</span>
+                            <span class="subject-tag">Drama II</span>
+                            <span class="subject-tag">Literary Theory</span>
+                            <span class="subject-tag">World Literature</span>
+                            <span class="subject-tag">Postcolonial Studies</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-view" onclick="window.location.href='./Master/index.html';">View Notes →</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <footer>
+            <p><strong>English Department - Bongaigaon University</strong></p>
+            <p style="margin-top: 10px;">Community-driven notes repository for English literature students</p>
+            <p style="margin-top: 15px;">
+                <a href="/index.html">← Back to Home</a> • 
+                <a href="/contact_us.html">Contact</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+                Not officially affiliated with Bongaigaon University
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

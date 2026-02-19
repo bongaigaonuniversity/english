@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Paper - 2nd Semester Notes - Bongaigaon University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .semester-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .breadcrumb {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Paper Cards Grid */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .paper-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .paper-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.3);
+        }
+
+        .paper-card.paper-1:before {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .paper-card.paper-2:before {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .paper-card.paper-3:before {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .paper-card.paper-4:before {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .paper-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .paper-icon {
+            font-size: 3em;
+        }
+
+        .paper-code {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .paper-card.paper-2 .paper-code {
+            background: #4facfe;
+        }
+
+        .paper-card.paper-3 .paper-code {
+            background: #f5576c;
+        }
+
+        .paper-card.paper-4 .paper-code {
+            background: #fa709a;
+        }
+
+        .paper-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .paper-description {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .meta-icon {
+            font-size: 1.1em;
+        }
+
+        .notes-count {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .notes-count.coming-soon {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .view-notes-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .paper-card.paper-2 .view-notes-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .paper-card.paper-3 .view-notes-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .paper-card.paper-4 .view-notes-btn {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .paper-card:hover .view-notes-btn {
+            transform: scale(1.02);
+        }
+
+        .view-notes-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .paper-card:hover .view-notes-btn.disabled {
+            transform: none;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .quick-actions h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .action-btn.tertiary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .header-icon {
+                font-size: 3em;
+            }
+
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .paper-title {
+                font-size: 1.2em;
+            }
+
+            .paper-icon {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icon">📚</div>
+            <h1>Select Paper for Notes</h1>
+            <p class="subtitle">M.A. English - 2nd Semester</p>
+            <div class="semester-badge">Choose a paper to view notes</div>
+            <p class="breadcrumb">
+                <a href="../../index.html">Home</a> / 
+                <a href="../index.html">English</a> / 
+                <a href="../Masters/index.html">Master</a> / 
+                2nd Semester Notes
+            </p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <span class="stat-number">4</span>
+                <span class="stat-label">Papers</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📄</div>
+                <span class="stat-number">0</span>
+                <span class="stat-label">Total Notes</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <span class="stat-number">0</span>
+                <span class="stat-label">Contributors</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⬇️</div>
+                <span class="stat-number">0</span>
+                <span class="stat-label">Downloads</span>
+            </div>
+        </div>
+
+        <h2 style="color: white; text-align: center; margin-bottom: 30px; font-size: 2em;">📚 Select a Paper</h2>
+
+        <div class="papers-grid">
+            <!-- Paper 1: Poetry II -->
+            <a href="#" onclick="alert('Notes coming soon!'); return false;" class="paper-card paper-1">
+                <div class="paper-header">
+                    <div class="paper-icon">📜</div>
+                </div>
+                <span class="paper-code">ENG-C-2015</span>
+                <h3 class="paper-title">Poetry II</h3>
+                <p class="paper-description">
+                    World Poetry: Tagore, Octavio Paz, Judith Wright, Paul Celan, Szymborska, Walcott, Heaney, Atwood, Brodsky, Darwish
+                </p>
+                <div class="paper-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span>5 Credits</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span>Core Paper</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📝</span>
+                        <span>10 Poems</span>
+                    </div>
+                </div>
+                <div class="notes-count coming-soon">
+                    ⏳ Coming Soon
+                </div>
+                <div class="view-notes-btn disabled">View Notes →</div>
+            </a>
+
+            <!-- Paper 2: Fiction II -->
+            <a href="#" onclick="alert('Notes coming soon!'); return false;" class="paper-card paper-2">
+                <div class="paper-header">
+                    <div class="paper-icon">📖</div>
+                </div>
+                <span class="paper-code">ENG-C-2025</span>
+                <h3 class="paper-title">Fiction II</h3>
+                <p class="paper-description">
+                    Novels: García Márquez, Saramago, Harper Lee, Ishiguro. Short Stories: Maupassant, Ama Ata Aidoo, Ken Liu
+                </p>
+                <div class="paper-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span>5 Credits</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span>Core Paper</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📚</span>
+                        <span>4 Novels + 3 Stories</span>
+                    </div>
+                </div>
+                <div class="notes-count coming-soon">
+                    ⏳ Coming Soon
+                </div>
+                <div class="view-notes-btn disabled">View Notes →</div>
+            </a>
+
+            <!-- Paper 3: Drama II -->
+            <a href="#" onclick="alert('Notes coming soon!'); return false;" class="paper-card paper-3">
+                <div class="paper-header">
+                    <div class="paper-icon">🎭</div>
+                </div>
+                <span class="paper-code">ENG-C-2035</span>
+                <h3 class="paper-title">Drama II</h3>
+                <p class="paper-description">
+                    Modern & Contemporary Drama: Brecht, Beckett, Soyinka, August Wilson, Yasmina Reza
+                </p>
+                <div class="paper-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span>5 Credits</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span>Core Paper</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">🎬</span>
+                        <span>5 Plays</span>
+                    </div>
+                </div>
+                <div class="notes-count coming-soon">
+                    ⏳ Coming Soon
+                </div>
+                <div class="view-notes-btn disabled">View Notes →</div>
+            </a>
+
+            <!-- Paper 4: Literary Theory and Criticism II -->
+            <a href="#" onclick="alert('Notes coming soon!'); return false;" class="paper-card paper-4">
+                <div class="paper-header">
+                    <div class="paper-icon">🎨</div>
+                </div>
+                <span class="paper-code">ENG-C-2045</span>
+                <h3 class="paper-title">Literary Theory and Criticism II</h3>
+                <p class="paper-description">
+                    Critical Theory: Shklovsky, Lacan, Barthes, Derrida, Achebe, Hall, Cixous, Spivak, Bhabha
+                </p>
+                <div class="paper-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span>5 Credits</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span>Core Paper</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💭</span>
+                        <span>9 Critical Texts</span>
+                    </div>
+                </div>
+                <div class="notes-count coming-soon">
+                    ⏳ Coming Soon
+                </div>
+                <div class="view-notes-btn disabled">View Notes →</div>
+            </a>
+        </div>
+
+        <div class="quick-actions">
+            <h2>📋 Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="syllabus.html" class="action-btn">📚 View Complete Syllabus</a>
+                <a href="../../upload.html" class="action-btn secondary">📤 Upload Notes</a>
+                <a href="../index.html" class="action-btn tertiary">🔙 All Semesters</a>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>M.A. English - 2nd Semester Notes</strong></p>
+            <p style="margin-top: 10px;">Department of English - Bongaigaon University</p>
+            <p style="margin-top: 15px;">
+                <a href="../../index.html">← Back to Home</a> • 
+                <a href="../index.html">English Department</a> • 
+                <a href="../Masters/index.html">All Semesters</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+                Not officially affiliated with Bongaigaon University
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

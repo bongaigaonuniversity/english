@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Semester - M.A. English - Bongaigaon University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .course-info {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .breadcrumb {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Semester Grid */
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .semester-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .semester-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .semester-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.3);
+        }
+
+        .semester-card.active:before {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .semester-card.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(50%);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .semester-card.disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .semester-card.disabled:before {
+            background: #999;
+        }
+
+        .semester-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .semester-card.disabled .semester-number {
+            color: #999;
+        }
+
+        .semester-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .semester-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .detail-icon {
+            font-size: 1.1em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-partial {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .view-btn:hover {
+            transform: translateX(5px);
+        }
+
+        .view-btn.papers-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .view-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .view-btn.disabled:hover {
+            transform: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-box h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-box p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Course Structure */
+        .structure-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .structure-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .structure-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .structure-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        .structure-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .structure-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .header-icon {
+                font-size: 3em;
+            }
+
+            .course-info {
+                padding: 8px 20px;
+                font-size: 0.9em;
+            }
+
+            .semester-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .semester-card {
+                padding: 25px;
+            }
+
+            .semester-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .semester-number {
+                font-size: 2.5em;
+            }
+
+            .semester-title {
+                font-size: 1.3em;
+            }
+
+            .view-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .view-btn:hover {
+                transform: translateX(3px);
+            }
+
+            .info-section,
+            .structure-section {
+                padding: 20px;
+            }
+
+            .info-section h2 {
+                font-size: 1.3em;
+                flex-wrap: wrap;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .structure-table {
+                font-size: 0.85em;
+            }
+
+            .structure-table th,
+            .structure-table td {
+                padding: 10px 8px;
+            }
+
+            footer {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .semester-number {
+                font-size: 2em;
+            }
+
+            .semester-title {
+                font-size: 1.1em;
+            }
+
+            .structure-table {
+                font-size: 0.75em;
+            }
+
+            .structure-table th,
+            .structure-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icon">📚</div>
+            <h1>Select Semester</h1>
+            <p class="subtitle">M.A. English - Bongaigaon University</p>
+            <div class="course-info">Master's Degree Program</div>
+            <p class="breadcrumb">
+                <a href="../../index.html">Home</a> / <a href="../index.html">English</a> / Master
+            </p>
+        </header>
+
+        <div class="info-section">
+            <h2>📘 About M.A. English Program</h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Duration</h3>
+                    <p>2 Years (4 Semesters)</p>
+                </div>
+                <div class="info-box">
+                    <h3>Total Credits</h3>
+                    <p>80 Credits</p>
+                </div>
+                <div class="info-box">
+                    <h3>System</h3>
+                    <p>Choice Based Credit System (CBCS)</p>
+                </div>
+                <div class="info-box">
+                    <h3>Department</h3>
+                    <p>Department of English</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="color: white; text-align: center; margin-bottom: 30px; font-size: 2em;">📚 Choose Your Semester</h2>
+
+        <div class="semester-grid" id="semesterGrid">
+            <!-- Semesters will be dynamically generated here -->
+        </div>
+
+        <div class="structure-section">
+            <h2>📊 Complete Course Structure</h2>
+            <div class="table-wrapper">
+                <table class="structure-table">
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Core Papers</th>
+                            <th>Elective Papers</th>
+                            <th>Credits</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Table rows will be dynamically generated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>💡 Important Information</h2>
+            <div style="color: #666; line-height: 1.8;">
+                <p style="margin-bottom: 15px;">
+                    <strong>📌 Note:</strong> This is an unofficial student-driven repository. For official syllabus and updates, please refer to the university's official website or contact the Department of English directly.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>🔄 Updates:</strong> We are continuously working to upload syllabi for all semesters. Check back regularly for updates.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>📤 Contribute:</strong> If you have syllabus documents or notes for other semesters, please consider contributing to help your fellow students.
+                </p>
+                <p>
+                    <strong>❓ Questions:</strong> For any queries or to report issues, please use the discussion forum or contact the repository maintainers.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>M.A. English - Bongaigaon University</strong></p>
+            <p style="margin-top: 10px;">Department of English Syllabus Repository</p>
+            <p style="margin-top: 15px;">
+                <a href="index.html">← Back to Home</a> • 
+                <a href="english-department.html">English Department</a> • 
+                <a href="upload.html">Upload Notes</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+                Not officially affiliated with Bongaigaon University
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Semester data configuration
+        const semesters = [
+            {
+                number: 1,
+                title: "First Semester",
+                papers: "4 Core Papers",
+                credits: "20 Credits",
+                coreInfo: "4 Papers",
+                electiveInfo: "-",
+                syllabusPath: "./Semester1/syllabus.html",
+                papersPath: "./Semester1/paper.html"
+            },
+            {
+                number: 2,
+                title: "Second Semester",
+                papers: "4 Core Papers",
+                credits: "20 Credits",
+                coreInfo: "Poetry II, Fiction II, Drama II, Literary Theory II",
+                electiveInfo: "-",
+                syllabusPath: "./Semester2/syllabus.html",
+                papersPath: "./Semester2/paper.html"
+            },
+            {
+                number: 3,
+                title: "Third Semester",
+                papers: "4 Papers",
+                credits: "20 Credits",
+                coreInfo: "3 Papers",
+                electiveInfo: "1 Paper",
+                syllabusPath: "./Semester3/syllabus.html",
+                papersPath: "./Semester3/paper.html"
+            },
+            {
+                number: 4,
+                title: "Fourth Semester",
+                papers: "Dissertation",
+                credits: "20 Credits",
+                coreInfo: "Dissertation",
+                electiveInfo: "-",
+                syllabusPath: "./Semester4/syllabus.html",
+                papersPath: "./Semester4/paper.html"
+            }
+        ];
+
+        // Function to check if a file exists
+        async function fileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Function to get ordinal suffix
+        function getOrdinal(n) {
+            const suffixes = ["th", "st", "nd", "rd"];
+            const value = n % 100;
+            return n + (suffixes[(value - 20) % 10] || suffixes[value] || suffixes[0]);
+        }
+
+        // Function to create semester card
+        async function createSemesterCard(semester) {
+            const hasSyllabus = await fileExists(semester.syllabusPath);
+            const hasPapers = await fileExists(semester.papersPath);
+            const isDisabled = !hasSyllabus && !hasPapers;
+
+            let statusClass = 'status-unavailable';
+            let statusText = 'Not Available';
+            let cardClass = 'semester-card';
+
+            if (hasSyllabus && hasPapers) {
+                statusClass = 'status-available';
+                statusText = '✓ Available Now';
+                cardClass += ' active';
+            } else if (hasSyllabus || hasPapers) {
+                statusClass = 'status-partial';
+                statusText = 'Partially Available';
+                cardClass += ' active';
+            } else {
+                cardClass += ' disabled';
+            }
+
+            const card = document.createElement('div');
+            card.className = cardClass;
+            
+            card.innerHTML = `
+                <div class="semester-number">${getOrdinal(semester.number)}</div>
+                <h3 class="semester-title">${semester.title}</h3>
+                <div class="semester-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📖</span>
+                        <span>${semester.papers}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⭐</span>
+                        <span>${semester.credits}</span>
+                    </div>
+                </div>
+                <span class="status-badge ${statusClass}">${statusText}</span>
+                <div class="button-group">
+                    ${hasSyllabus ? `
+                        <div class="view-btn" onclick="window.location.href='${semester.syllabusPath}';">
+                            View Syllabus →
+                        </div>
+                    ` : ''}
+                    ${hasPapers ? `
+                        <div class="view-btn papers-btn" onclick="window.location.href='${semester.papersPath}';">
+                            View Papers 📚
+                        </div>
+                    ` : ''}
+                    ${isDisabled ? `
+                        <div class="view-btn disabled">
+                            Coming Soon
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Function to create table row
+        async function createTableRow(semester) {
+            const hasSyllabus = await fileExists(semester.syllabusPath);
+            const hasPapers = await fileExists(semester.papersPath);
+
+            let statusClass = 'status-unavailable';
+            let statusText = 'Not Available';
+
+            if (hasSyllabus && hasPapers) {
+                statusClass = 'status-available';
+                statusText = 'Available';
+            } else if (hasSyllabus || hasPapers) {
+                statusClass = 'status-partial';
+                statusText = 'Partial';
+            }
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>Semester ${semester.number}</strong></td>
+                <td>${semester.coreInfo}</td>
+                <td>${semester.electiveInfo}</td>
+                <td>${semester.credits.split(' ')[0]}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+            `;
+
+            return row;
+        }
+
+        // Initialize the page
+        async function initializePage() {
+            const grid = document.getElementById('semesterGrid');
+            const tableBody = document.getElementById('tableBody');
+
+            // Create semester cards
+            for (const semester of semesters) {
+                const card = await createSemesterCard(semester);
+                grid.appendChild(card);
+            }
+
+            // Create table rows
+            for (const semester of semesters) {
+                const row = await createTableRow(semester);
+                tableBody.appendChild(row);
+            }
+
+            // Add total row
+            const totalRow = document.createElement('tr');
+            totalRow.style.background = '#f8f9fa';
+            totalRow.style.fontWeight = '600';
+            totalRow.innerHTML = `
+                <td><strong>Total</strong></td>
+                <td colspan="2">Complete Program</td>
+                <td><strong>80</strong></td>
+                <td>-</td>
+            `;
+            tableBody.appendChild(totalRow);
+        }
+
+        // Run initialization when page loads
+        window.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

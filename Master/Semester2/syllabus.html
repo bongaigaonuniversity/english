@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.A. English 2nd Semester Syllabus - Bongaigaon University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .syllabus-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .semester-info {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .breadcrumb {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Course Card */
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .course-code {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .meta-icon {
+            font-size: 1.2em;
+        }
+
+        /* Texts/Units Section */
+        .texts-section,
+        .units-section {
+            margin-top: 30px;
+        }
+
+        .text-item,
+        .unit {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .text-title,
+        .unit-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .text-content,
+        .unit-content {
+            color: #555;
+        }
+
+        .text-content ul,
+        .unit-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .text-content li,
+        .unit-content li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .text-content li:before,
+        .unit-content li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Literary Texts Styled List */
+        .literary-list {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .literary-list h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .literary-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .literary-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.05em;
+            color: #444;
+        }
+
+        .literary-list li:before {
+            content: "📖";
+            position: absolute;
+            left: 0;
+        }
+
+        .literary-list .author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .literary-list .work {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Assessment Section */
+        .assessment-section {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .assessment-section h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .assessment-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .assessment-box h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Credit Badge */
+        .credit-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .course-card {
+                padding: 25px;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="syllabus-icon">📚</div>
+            <h1>M.A. English Syllabus</h1>
+            <p class="subtitle">Department of English - Bongaigaon University</p>
+            <div class="semester-info">2nd Semester - CBCS</div>
+            <p class="breadcrumb">
+                <a href="/index.html">Home</a> / <a href="/english/index.html">English</a> 
+                / <a href="/english/Masters/index.html">Master</a> / 2nd Semester Syllabus
+            </p>
+        </header>
+
+        <!-- Course 1: Poetry II -->
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-code">ENG-C-2015</span>
+                <h2 class="course-title">Poetry II</h2>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span><strong>Nature:</strong> Core</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span><strong>Credits:</strong> 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💯</span>
+                        <span><strong>Total Marks:</strong> 100 (External: 70, Internal: 30)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="literary-list">
+                <h3>📜 Prescribed Texts</h3>
+                <ul>
+                    <li><span class="author">Rabindranath Tagore:</span> <span class="work">"Gitanjali - 35"</span></li>
+                    <li><span class="author">Octavio Paz:</span> <span class="work">"Wind, Water, Stone"</span></li>
+                    <li><span class="author">Judith Wright:</span> <span class="work">"Turning Fifty"</span></li>
+                    <li><span class="author">Paul Celan:</span> <span class="work">"Death Fugue"</span></li>
+                    <li><span class="author">Wisława Szymborska:</span> <span class="work">"Consolation"</span></li>
+                    <li><span class="author">Dereck Walcott:</span> <span class="work">"After the Storm"</span></li>
+                    <li><span class="author">Seamus Heaney:</span> <span class="work">"Digging"</span></li>
+                    <li><span class="author">Margaret Atwood:</span> <span class="work">"The Animals in that Country"</span></li>
+                    <li><span class="author">Joseph Brodsky:</span> <span class="work">"May 24, 1980"</span></li>
+                    <li><span class="author">Mahmoud Darwish:</span> <span class="work">"I Come from There"</span></li>
+                </ul>
+            </div>
+
+            <div class="assessment-section">
+                <h3>📊 Assessment Method</h3>
+                <div class="assessment-grid">
+                    <div class="assessment-box">
+                        <h4>Internal Assessment (30 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Continuous evaluation</li>
+                            <li>• Assignments</li>
+                            <li>• Class participation</li>
+                            <li>• Presentations</li>
+                        </ul>
+                    </div>
+                    <div class="assessment-box">
+                        <h4>End-Semester Exam (70 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Critical analysis</li>
+                            <li>• Comparative studies</li>
+                            <li>• Textual interpretation</li>
+                            <li>• Thematic essays</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 2: Fiction II -->
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-code">ENG-C-2025</span>
+                <h2 class="course-title">Fiction II</h2>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span><strong>Nature:</strong> Core</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span><strong>Credits:</strong> 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💯</span>
+                        <span><strong>Total Marks:</strong> 100 (External: 70, Internal: 30)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-item">
+                <h3 class="text-title">Unit 1: Novels <span class="credit-badge">Credit: 4</span></h3>
+                <div class="text-content">
+                    <ul>
+                        <li><span class="author">Gabriel García Márquez:</span> <span class="work">Love in the Time of Cholera</span></li>
+                        <li><span class="author">Jose Saramago:</span> <span class="work">Blindness</span></li>
+                        <li><span class="author">Harper Lee:</span> <span class="work">To Kill a Mockingbird</span></li>
+                        <li><span class="author">Kazuo Ishiguro:</span> <span class="work">Never Let Me Go</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-item">
+                <h3 class="text-title">Unit 2: Short Stories <span class="credit-badge">Credit: 1</span></h3>
+                <div class="text-content">
+                    <ul>
+                        <li><span class="author">Guy de Maupassant:</span> <span class="work">"The Necklace"</span></li>
+                        <li><span class="author">Ama Ata Aidoo:</span> <span class="work">"No Sweetness Here"</span></li>
+                        <li><span class="author">Ken Liu:</span> <span class="work">"The Paper Menagerie"</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="assessment-section">
+                <h3>📊 Assessment Method</h3>
+                <div class="assessment-grid">
+                    <div class="assessment-box">
+                        <h4>Internal Assessment (30 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Reading reports</li>
+                            <li>• Character analysis</li>
+                            <li>• Critical essays</li>
+                            <li>• Class discussions</li>
+                        </ul>
+                    </div>
+                    <div class="assessment-box">
+                        <h4>End-Semester Exam (70 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Narrative techniques</li>
+                            <li>• Thematic exploration</li>
+                            <li>• Contextual analysis</li>
+                            <li>• Comparative studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 3: Drama II -->
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-code">ENG-C-2035</span>
+                <h2 class="course-title">Drama II</h2>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span><strong>Nature:</strong> Core</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span><strong>Credits:</strong> 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💯</span>
+                        <span><strong>Total Marks:</strong> 100 (External: 70, Internal: 30)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="literary-list">
+                <h3>🎭 Prescribed Texts</h3>
+                <ul>
+                    <li><span class="author">Bertolt Brecht:</span> <span class="work">Mother Courage and Her Children</span></li>
+                    <li><span class="author">Samuel Beckett:</span> <span class="work">Waiting for Godot</span></li>
+                    <li><span class="author">Wole Soyinka:</span> <span class="work">Death and the King's Horseman</span></li>
+                    <li><span class="author">August Wilson:</span> <span class="work">Fences</span></li>
+                    <li><span class="author">Yasmina Reza:</span> <span class="work">God of Carnage</span></li>
+                </ul>
+            </div>
+
+            <div class="assessment-section">
+                <h3>📊 Assessment Method</h3>
+                <div class="assessment-grid">
+                    <div class="assessment-box">
+                        <h4>Internal Assessment (30 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Scene analysis</li>
+                            <li>• Performance critique</li>
+                            <li>• Dramatic readings</li>
+                            <li>• Research presentations</li>
+                        </ul>
+                    </div>
+                    <div class="assessment-box">
+                        <h4>End-Semester Exam (70 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Dramatic techniques</li>
+                            <li>• Theatrical conventions</li>
+                            <li>• Character interpretation</li>
+                            <li>• Contextual criticism</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 4: Literary Theory and Criticism II -->
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-code">ENG-C-2045</span>
+                <h2 class="course-title">Literary Theory and Criticism II</h2>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📖</span>
+                        <span><strong>Nature:</strong> Core</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">⭐</span>
+                        <span><strong>Credits:</strong> 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💯</span>
+                        <span><strong>Total Marks:</strong> 100 (External: 70, Internal: 30)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="literary-list">
+                <h3>📖 Critical Texts</h3>
+                <ul>
+                    <li><span class="author">Viktor Shklovsky:</span> <span class="work">"Art as Technique"</span></li>
+                    <li><span class="author">Jacques Lacan:</span> <span class="work">"Seminar on the Purloined Letter"</span></li>
+                    <li><span class="author">Roland Barthes:</span> <span class="work">"Death of an Author"</span></li>
+                    <li><span class="author">Jacques Derrida:</span> <span class="work">"Structure, Sign and Play in the Discourse of Human Sciences"</span></li>
+                    <li><span class="author">Chinua Achebe:</span> <span class="work">"Colonialist Criticism"</span></li>
+                    <li><span class="author">Stuart Hall:</span> <span class="work">"Cultural Studies and Its Theoretical Legacies"</span></li>
+                    <li><span class="author">Hélène Cixous:</span> <span class="work">"The Laugh of Medusa"</span></li>
+                    <li><span class="author">Gayatri Spivak:</span> <span class="work">"Can the Subaltern Speak"</span></li>
+                    <li><span class="author">Homi K. Bhabha:</span> <span class="work">"The Other Question"</span></li>
+                </ul>
+            </div>
+
+            <div class="assessment-section">
+                <h3>📊 Assessment Method</h3>
+                <div class="assessment-grid">
+                    <div class="assessment-box">
+                        <h4>Internal Assessment (30 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Critical essays</li>
+                            <li>• Theoretical applications</li>
+                            <li>• Seminar presentations</li>
+                            <li>• Reading responses</li>
+                        </ul>
+                    </div>
+                    <div class="assessment-box">
+                        <h4>End-Semester Exam (70 marks)</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Theoretical analysis</li>
+                            <li>• Critical frameworks</li>
+                            <li>• Comparative criticism</li>
+                            <li>• Conceptual essays</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Department of English - Bongaigaon University</strong></p>
+            <p style="margin-top: 10px;">CBCS Syllabus - M.A. Second Semester</p>
+            <p style="margin-top: 15px;">
+                <a href="index.html">← Back to Home</a> • 
+                <a href="english-department.html">English Department</a> • 
+                <a href="upload.html">Upload Notes</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+                Not officially affiliated with Bongaigaon University
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
